@@ -1,197 +1,254 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-
-    <meta name="ppck-ver" content="abd83f9327e846ecaa75bba39bbae7be" />
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MatrixZone - البوابة الترفيهية للألعاب</title>
+    <title>MatrixZone - Gaming & Entertainment Hub</title>
     
-    <!-- 1. رمز التحقق الخاص بـ PopCash (استبدل VALUE بـ Meta Tag الخاص بك) -->
+    <!-- 1. PopCash Verification Meta Tag -->
     <meta name="popcash-verify" content="YOUR_POPCASH_VERIFICATION_CODE_HERE" />
 
-    <!-- الخطوط والأيقونات -->
+    <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-color: #0b0e14;
-            --card-bg: #151921;
-            --accent-green: #00ff88;
+            --bg-main: #0b0e14;
+            --bg-card: #161b22;
+            --accent-neon: #00ff88;
             --accent-purple: #7928ca;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: #232936;
+            --text-title: #f0f6fc;
+            --text-body: #8b949e;
+            --border-color: #30363d;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-main);
+            color: var(--text-title);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            direction: rtl;
+            direction: ltr;
         }
 
-        /* الهيدر والعنوان */
         header {
-            background: linear-gradient(180deg, rgba(21,25,33,0.8) 0%, rgba(11,14,20,0) 100%);
-            padding: 2rem 1rem;
-            text-align: center;
+            background-color: var(--bg-card);
             border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 1rem;
+            text-align: center;
         }
 
-        .logo {
-            font-size: 2rem;
+        .brand {
+            font-size: 1.8rem;
             font-weight: 800;
-            background: linear-gradient(45deg, var(--accent-green), var(--accent-purple));
+            background: linear-gradient(45deg, var(--accent-neon), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .tagline {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* شبكة الألعاب والكروت */
-        main {
-            flex: 1;
+        .container {
             max-width: 1100px;
             margin: 2rem auto;
             padding: 0 1rem;
             width: 100%;
+            flex: 1;
         }
 
-        .grid-container {
+        .section-header {
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-neon);
+            padding-left: 0.75rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            color: var(--text-title);
+        }
+
+        .articles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        .card {
-            background-color: var(--card-bg);
+        .article-card {
+            background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 1.5rem;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             transition: transform 0.2s, border-color 0.2s;
             cursor: pointer;
         }
 
-        .card:hover {
+        .article-card:hover {
             transform: translateY(-4px);
-            border-color: var(--accent-green);
+            border-color: var(--accent-neon);
         }
 
-        .card-icon {
-            font-size: 2rem;
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-btn {
-            background: transparent;
-            border: 1px solid var(--accent-green);
-            color: var(--accent-green);
-            padding: 0.6rem 1rem;
-            border-radius: 6px;
-            font-weight: 600;
-            text-align: center;
-            text-decoration: none;
+        .card-image-placeholder {
+            height: 160px;
+            background: linear-gradient(135deg, #1f242d 0%, #0d1117 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
+            color: var(--accent-neon);
+            font-size: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .card:hover .card-btn {
-            background: var(--accent-green);
-            color: var(--bg-color);
+        .card-content {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
-        /* الفوتر */
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--accent-neon);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            font-size: 0.875rem;
+            color: var(--text-body);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-body);
+        }
+
+        .read-btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-neon);
+            color: var(--accent-neon);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .article-card:hover .read-btn {
+            background-color: var(--accent-neon);
+            color: var(--bg-main);
+        }
+
         footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
             text-align: center;
             padding: 1.5rem;
-            color: var(--text-muted);
+            color: var(--text-body);
             font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: auto;
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><i class="fa-solid => fa-gamepad"></i> MatrixZone Hub</div>
-        <p class="tagline">منصتك الحديثة لأحدث الألعاب والأدوات الترفيهية</p>
+        <div class="brand"><i class="fa-solid fa-gamepad"></i> MatrixZone Media</div>
     </header>
 
-    <main>
-        <div class="grid-container">
-            
-            <div class="card">
-                <div>
-                    <i class="fa-solid fa-fire card-icon"></i>
-                    <h2 class="card-title">الألعاب الأكثر شعبية</h2>
-                    <p class="card-desc">استكشف القائمة المحدثة لأقوى ألعاب الحركة والأكشن المتاحة مجاناً.</p>
-                </div>
-                <a href="#" class="card-btn">دخول المحرك <i class="fa-solid fa-arrow-left"></i></a>
-            </div>
+    <main class="container">
+        
+        <div class="section-header">
+            <h2>Latest Gaming Articles & Entertainment Guides</h2>
+        </div>
 
-            <div class="card">
-                <div>
-                    <i class="fa-solid fa-bolt card-icon"></i>
-                    <h2 class="card-title">أدوات السرعة والتحسين</h2>
-                    <p class="card-desc">إعدادات برمجية وسكربتات لتسريع المحاكيات وأداء الألعاب.</p>
-                </div>
-                <a href="#" class="card-btn">تصفح الأدوات <i class="fa-solid fa-arrow-left"></i></a>
-            </div>
+        <div class="articles-grid">
 
-            <div class="card">
-                <div>
-                    <i class="fa-solid fa-trophy card-icon"></i>
-                    <h2 class="card-title">التحديات الأسبوعية</h2>
-                    <p class="card-desc">شارِك في المسابقات التنافسية اليومية وحصل على مكافآت حصريّة.</p>
+            <!-- Article 1 -->
+            <article class="article-card">
+                <div class="card-image-placeholder">
+                    <i class="fa-solid fa-ghost"></i>
                 </div>
-                <a href="#" class="card-btn">عرض التحديات <i class="fa-solid fa-arrow-left"></i></a>
-            </div>
+                <div class="card-content">
+                    <span class="card-tag">Gaming Strategies</span>
+                    <h3 class="card-title">Optimizing High-End Games on Modern Emulators</h3>
+                    <p class="card-excerpt">A complete overview of configurations and script settings to eliminate stuttering and boost performance on advanced emulators.</p>
+                    <div class="card-footer">
+                        <span>Read: 3 mins</span>
+                        <span class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="article-card">
+                <div class="card-image-placeholder">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Tools & Software</span>
+                    <h3 class="card-title">Using Automation Scripts for Maximum Efficiency</h3>
+                    <p class="card-excerpt">An overview of how shortcut scripts and interactive click distribution work across different browsing environments.</p>
+                    <div class="card-footer">
+                        <span>Read: 5 mins</span>
+                        <span class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="article-card">
+                <div class="card-image-placeholder">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Tournaments & Updates</span>
+                    <h3 class="card-title">Competitive Scene Developments and Seasonal Updates</h3>
+                    <p class="card-excerpt">Comprehensive analysis of recent adjustments in multiplayer game mechanics and keeping up with team performance changes.</p>
+                    <div class="card-footer">
+                        <span>Read: 4 mins</span>
+                        <span class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </article>
 
         </div>
+
     </main>
 
     <footer>
-        <p>&copy; 2026 MatrixZone. جميع الحقوق محفوظة.</p>
+        <p>&copy; 2026 MatrixZone. All rights reserved.</p>
     </footer>
 
-    <!-- 2. ضع كود إعلانات البوب أندر (PopCash Script) هنا قبل إغلاق body مباشرة -->
+    <!-- 2. PopCash Pop-under Script -->
     <script type="text/javascript">
-        // ضع كود البوب أندر الخاص بك هنا
+      // Place your PopCash pop-under script here
     </script>
 
 </body>
